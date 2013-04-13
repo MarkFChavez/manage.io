@@ -1,0 +1,57 @@
+
+<div class="row-fluid">
+
+	<div class="span12">
+		<h1> Create a Project </h1>
+		<hr />
+	</div>
+
+</div>
+
+<div class="row-fluid">
+
+	<div class="span12">
+		
+		<%= form_for([current_user, @project]) do |f| %>
+
+			<% if !@project.errors.empty? %>
+				<div class="alert alert-error">
+					<p style="font-weight:bold"> <%= pluralize(@project.errors.count, "error") %> found: </p>
+					<ul>
+					<% @project.errors.full_messages.each do |err| %>
+						<li> <%= err %> </li>
+					<% end %>
+					</ul>
+				</div>
+			<% end %>
+
+			<% if !notice.nil? %>
+				<div class="alert alert-success">
+					<span style="font-weight:bold"> <%= simple_format(notice) %> </span>
+				</div>
+			<% end %>
+
+			<div>
+				<%= f.label :name %>
+				<%= f.text_field :name, placeholder: "#juan dela cruz" %>
+			</div>
+
+			<div>
+				<%= f.label :description %>
+				<%= f.text_area :description, style:"height:150px", placeholder: "#description" %>
+			</div>
+
+			<div>
+				<%= button_tag type:"submit", class:"btn" do %>
+					<i class="icon icon-ok"></i> Create
+				<% end %>
+			</div>
+
+			<div style="margin-top:10px">
+				<%= link_to "Back", user_projects_path(current_user) %>
+			</div>
+		<% end %>
+
+	</div>
+
+</div>

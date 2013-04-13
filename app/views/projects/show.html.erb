@@ -1,0 +1,27 @@
+
+<div class="row-fluid">
+
+	<div class="span12">
+		<h1> <%= @project.name %> </h1>
+		<hr />
+	</div>
+
+</div>
+
+<div class="row-fluid">
+
+	<div class="span12">
+		
+		<label style="font-weight:bold">Description:</label>
+
+		<div>
+			<%= @project.description %>
+		</div>
+
+		<div style="margin-top:10px">
+			<%= link_to "Back", user_projects_path(current_user) %>
+		</div>
+
+	</div>
+
+</div>

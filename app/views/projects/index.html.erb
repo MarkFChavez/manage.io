@@ -1,0 +1,44 @@
+
+<div class="row-fluid">
+
+	<div class="span12">
+		<h1> Projects </h1>
+		<hr />
+	</div>
+
+</div>
+
+<div class="row-fluid">
+
+	<div class="span12">
+		
+		<% if !@projects.empty? %>
+			<table class="table">
+				<thead>
+					<tr>
+						<th> Name </th>
+						<th> Description </th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @projects.each do |project| %>
+					<tr>
+						<td> <%= link_to project.name, user_project_path(project.user, project) %> </td>
+						<td> <%= project.description %> </td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			No projects yet.
+		<% end %>
+
+	</div>
+
+</div>
+
+<div class="row-fluid">
+	<div class="span12">
+		<%= link_to raw("<i class='icon icon-ok'></i> Create a New Project"), new_user_project_path(current_user), class:"btn" %>
+	</div>
+</div>
