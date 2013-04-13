@@ -29,6 +29,13 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    @project = Project.find(params[:id])
+    
+    if @project.update_attributes(params[:project])
+      redirect_to edit_user_project_path(@project), notice: "Project updated successfully!"
+    else
+      render :edit
+    end
   end
 
   def destroy
