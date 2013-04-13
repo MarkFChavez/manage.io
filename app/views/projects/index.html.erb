@@ -13,18 +13,33 @@
 	<div class="span12">
 		
 		<% if !@projects.empty? %>
-			<table class="table">
+			<table class="table table-bordered">
 				<thead>
 					<tr>
 						<th> Name </th>
 						<th> Description </th>
+						<th>Status</th>
+						<th>Action/s</th>
 					</tr>
 				</thead>
 				<tbody>
 					<% @projects.each do |project| %>
-					<tr>
+					<%
+						if project.done?
+							classn = "success"
+						else
+							classn = "warning"
+						end
+					%>
+					<tr class="<%= classn %>">
 						<td> <%= link_to project.name, user_project_path(project.user, project) %> </td>
 						<td> <%= project.description %> </td>
+						<td> 
+							<% if project.done? %> <%= "Done" %> <% else %> <%= "On-going Development" %> <% end %>
+						</td>
+						<td>
+							<%= link_to raw("<i class='icon icon-pencil icon-white'></i> Edit this project"), edit_user_project_path(project.user, project), class:"btn btn-inverse" %>
+						</td>
 					</tr>
 					<% end %>
 				</tbody>

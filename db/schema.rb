@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130413113921) do
+ActiveRecord::Schema.define(:version => 20130413135541) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "done",        :default => false
   end
 
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
