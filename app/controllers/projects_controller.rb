@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.build(params[:project])
 
     if @project.save
-      redirect_to new_user_project_path(@project), notice: "Project created successfully. View <a href='#'>here</a>"
+      redirect_to new_project_path, notice: "Project created successfully. View <a href='#'>here</a>"
     else
       render :new
     end
@@ -30,15 +30,19 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    
+
     if @project.update_attributes(params[:project])
-      redirect_to edit_user_project_path(@project), notice: "Project updated successfully!"
+      redirect_to edit_project_path(@project), notice: "Project updated successfully!"
     else
       render :edit
     end
   end
 
   def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+
+    redirect_to user_projects_path(current_user), alert: "Project deleted successfully!"
   end
 
 end

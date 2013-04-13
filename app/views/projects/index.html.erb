@@ -8,6 +8,18 @@
 
 </div>
 
+<% if !notice.nil? %>
+	<div class="alert alert-success">
+		<span style="font-weight:bold"> <%= notice %> </span>
+	</div>
+<% end %>
+
+<% if !alert.nil? %>
+	<div class="alert alert-error">
+		<span style="font-weight:bold"> <%= alert %> </span>
+	</div>
+<% end %>
+
 <div class="row-fluid">
 
 	<div class="span12">
@@ -32,13 +44,14 @@
 						end
 					%>
 					<tr class="<%= classn %>">
-						<td> <%= link_to project.name, user_project_path(project.user, project) %> </td>
+						<td> <%= link_to project.name, project_path(project) %> </td>
 						<td> <%= project.description %> </td>
 						<td> 
 							<% if project.done? %> <%= "Done" %> <% else %> <%= "On-going Development" %> <% end %>
 						</td>
 						<td>
-							<%= link_to raw("<i class='icon icon-pencil icon-white'></i> Edit this project"), edit_user_project_path(project.user, project), class:"btn btn-inverse" %>
+							<%= link_to raw("<i class='icon icon-pencil icon-white'></i> Edit this project"), edit_project_path(project), class:"btn btn-inverse" %> 
+							<%= link_to raw("<i class='icon icon-remove icon-white'></i> Delete this project"), project_path(project), method: :delete, class:"btn btn-danger", confirm: "Deleting this project will also remove associated members. Are you sure you want to continue?" %>
 						</td>
 					</tr>
 					<% end %>
@@ -54,6 +67,6 @@
 
 <div class="row-fluid">
 	<div class="span12">
-		<%= link_to raw("<i class='icon icon-ok'></i> Create a New Project"), new_user_project_path(current_user), class:"btn" %>
+		<%= link_to raw("<i class='icon icon-ok'></i> Create a New Project"), new_project_path, class:"btn" %>
 	</div>
 </div>

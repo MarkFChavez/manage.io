@@ -10,7 +10,7 @@
 
 <div class="row-fluid">
 
-	<div class="span12">
+	<div class="span6">
 		
 		<label style="font-weight:bold">Description:</label>
 
@@ -18,10 +18,18 @@
 			<%= @project.description %>
 		</div>
 
-		<div style="margin-top:10px">
-			<%= link_to "Back", user_projects_path(current_user) %>
+		<div style="margin-top:20px">
+			
 		</div>
 
+		<div style="margin-top:20px">
+			<%= link_to "Back", projects_path %>
+		</div>
+
+	</div>
+
+	<div class="span6">
+		Hey there!
 	</div>
 
 </div>
