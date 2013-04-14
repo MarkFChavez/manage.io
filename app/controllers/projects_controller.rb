@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
 
+  load_and_authorize_resource
   before_filter :authenticate_user!
   
   def index
@@ -8,6 +9,8 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @comments = @project.comments.limit(5)
+    @comment = Comment.new
   end
 
   def new

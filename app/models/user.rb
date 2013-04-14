@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :projects, dependent: :destroy
   has_many :comments, through: :projects
+
 end

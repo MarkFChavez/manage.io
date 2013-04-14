@@ -8,6 +8,18 @@
 
 </div>
 
+<% if !notice.nil? %>
+	<div class="alert alert-success">
+		<span style="font-weight:bold"> <%= notice %> </span>
+	</div>
+<% end %>
+
+<% if !alert.nil? %>
+	<div class="alert alert-error">
+		<span style="font-weight:bold"> <%= alert %> </span>
+	</div>
+<% end %>
+
 <div class="row-fluid">
 
 	<div class="span6">
@@ -19,7 +31,9 @@
 		</div>
 
 		<div style="margin-top:20px">
-			
+			<%= form_for [@project,@comment] do |f| %>
+				<%= f.text_field :comment, placeholder:"#write a comment", id:"comment-field" %>
+			<% end %> 
 		</div>
 
 		<div style="margin-top:20px">
@@ -29,7 +43,24 @@
 	</div>
 
 	<div class="span6">
-		Hey there!
+
+		<p class="label label-important"> Status Updates </p>
+
+		<% if !@comments.empty? %>	
+
+			<% @comments.each do |comment| %>
+				<div style="border-bottom:1px solid #CCC;margin-top:10px;margin-bottom:10px">
+					<p style="font-weight:bold"> <%= comment.user.email %> </p>
+					<blockquote>
+						<%= comment.comment %>
+					</blockquote>
+				</div>
+			<% end %>
+
+		<% else %>
+			<div> No comments yet. </div>
+		<% end %>
+
 	</div>
 
 </div>

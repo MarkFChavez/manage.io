@@ -31,6 +31,7 @@
 						<th> Name </th>
 						<th> Description </th>
 						<th>Status</th>
+						<th>Team Lead</th>
 						<th>Action/s</th>
 					</tr>
 				</thead>
@@ -50,8 +51,16 @@
 							<% if project.done? %> <%= "Done" %> <% else %> <%= "On-going Development" %> <% end %>
 						</td>
 						<td>
-							<%= link_to raw("<i class='icon icon-pencil icon-white'></i> Edit this project"), edit_project_path(project), class:"btn btn-inverse" %> 
-							<%= link_to raw("<i class='icon icon-remove icon-white'></i> Delete this project"), project_path(project), method: :delete, class:"btn btn-danger", confirm: "Deleting this project will also remove associated members. Are you sure you want to continue?" %>
+							<%= project.user.email %>
+						</td>
+						<td>
+							<% if can? :update, project %>
+								<%= link_to raw("<i class='icon icon-pencil icon-white'></i> Edit this project"), edit_project_path(project), class:"btn btn-inverse" %> 
+							<% end %>
+
+							<% if can? :delete, project %>
+								<%= link_to raw("<i class='icon icon-remove icon-white'></i> Delete this project"), project_path(project), method: :delete, class:"btn btn-danger", confirm: "Deleting this project will also remove associated members. Are you sure you want to continue?" %>
+							<% end %>
 						</td>
 					</tr>
 					<% end %>
